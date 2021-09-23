@@ -1,0 +1,38 @@
+{% extends "notes/base.html" %}
+
+{% load static %}
+{% block content %}
+
+<title> Lista de Tags</title>
+
+<div class="appbar">
+    <span class="menu_button" style="font-size:30px;cursor:pointer" onclick="document.getElementById('mySidenav').style.width = '250px'" >&#9776; </span>
+    <a href="{% url 'index' %}" class="previous round">&#x21E6;</a>
+    <img class="logo" src="{% static 'notes/img/logo-getit.png' %}" />
+    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick=" document.getElementById('mySidenav').style.width = '0'">&times;</a>
+    <a href="{% url 'index' %}">Home Page</a>
+    <a href="{% url 'tag_get' %}">Lista de Tags</a>
+</div>
+
+
+<div class="card-box">
+    <div class="box">
+    <h2>Lista de Tags</h2>
+        {% for tag in tags %}
+        <ul>
+            <li> <a href="{% url 'tag_details' tag.id %}"><span>{{tag.id}}</span>{{tag.tag}}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+</main>
+
+
+{% endblock %}

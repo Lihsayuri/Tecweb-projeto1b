@@ -1,0 +1,61 @@
+{% extends "notes/base.html" %}
+{% entends "notes/notes.html"}
+{% load static %}
+<script src="{% static 'notes/script/getit.js' %}"></script>
+
+
+{% block content %}
+
+<div class="appbar">
+    <span class="menu_button" style="font-size:30px;cursor:pointer" onclick="document.getElementById('mySidenav').style.width = '250px'" >&#9776; </span>
+    <img class="logo" src="{% static 'notes/img/logo-getit.png' %}" />
+    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick=" document.getElementById('mySidenav').style.width = '0'">&times;</a>
+    <a href="{% url 'index' %}">Home Page</a>
+    <a href="{% url 'tag_get' %}">Lista de Tags</a>
+</div>
+
+
+<main class="container">
+    <form class="form-card" method="post">
+        {% csrf_token %}
+        <input
+        class="form-card-title"
+        type="text"
+        name="titulo"
+        placeholder="Título"
+      />
+
+      <input
+      class="form-card-title"
+      type="text"
+      name="tag"
+      placeholder="Tag"
+    />
+      <textarea
+        class="autoresize"
+        name="detalhes"
+        placeholder="Digite o conteúdo..."
+      ></textarea>
+      <button class="btn" type="submit">Criar</button>
+    </form>
+
+    <div class="card-container">
+        {% block notes %} {% endblock %}
+    </div>
+<!-- 
+    <ul >
+        {% for note in notes %}
+        <li>{{ note.title }}
+            {{ note.content}}
+        </li>
+
+        {% endfor %}
+    </ul> -->
+</main>
+
+{% endblock %}
+

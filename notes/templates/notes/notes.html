@@ -1,0 +1,88 @@
+{% extends "notes/index.html" %}
+
+{% load static %}
+{% block notes %}
+{% for note in notes %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'notes/css/getit.css' %}">
+
+<div class="card">
+    <div class="container_button">
+      <form method="post" action="{% url 'note_delete' %}">
+        {% csrf_token %}
+        <input name="id" type="hidden" value="{{note.id}}"/>
+        <div>
+          <button class="btn btn-info btn-lg delete_button" type="submit">Deletar</button>
+        </div>
+      </form>
+      <div>
+        <button type="button" class="btn btn-info btn-lg delete_button" data-toggle="modal" data-target="#{{note.id}}">Editar</button>
+      </div>
+      <input name="content" type="hidden" value="{{note.content}}"/>
+      <button class="btn btn-info btn-lg delete_button" onclick="document.getElementById('{{note.content}}').src='../../static/notes/img/pic_bulbon.gif'" >Do it</button>
+        <img id='{{note.content}}' src="../../static/notes/img/pic_bulboff.gif" style="width:10px">
+      <button class="btn btn-info btn-lg delete_button" onclick="document.getElementById('{{note.content}}').src='../../static/notes/img/pic_bulboff.gif'" >After</button>
+    </div>
+    
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="container_title">
+            <h3 class="card-title"> {{note.title}} </h3>
+            <h4 class="card-title"> {{note.tag.tag}}</h4>
+          </div>
+        </div>
+  
+        <div class="flip-card-back">
+          <div class="card-content">
+            <p>
+              {{note.content}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id='{{note.id}}' role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <form method="post" action="edit/"> -->
+            <form method="post" action="{% url 'note_edit' note.id %}">
+            {% csrf_token %}
+            <input name="id" type="hidden" value="{{note.id}}"/>
+            <input
+            class="form-card-title"
+            type="text"
+            name="titulo"
+            value="{{note.title}}"
+            />
+
+            <input
+            class="form-card-title"
+            type="text"
+            name="tag"
+            value="{{note.tag.tag}}"
+            
+            />
+  
+            <textarea
+            class="autoresize"
+            name="detalhes"
+            > {{note.content}}</textarea>
+  
+            <button class="btn" type="submit">Editar</button>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{% endfor %}
+
+{% endblock %}
