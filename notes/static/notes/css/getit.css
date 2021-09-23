@@ -255,8 +255,8 @@ transform: rotate(-5deg);
 }
 
 .flip-card{
-  width:16%;
-  height: 7.5rem;
+  width: 17rem;
+  height: 6rem;
   perspective: 1000px;
   
 }
