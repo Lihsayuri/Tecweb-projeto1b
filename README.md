@@ -2,9 +2,9 @@
 
 Essa é a parte 'b' do primeiro projeto da matéria Tecnologias Web feito por Lívia Sayuri Makuta.<br> 
 
-Foram reimplementadas as funções do CRUD (criar[POST], editar[EDIT], deletar[DELETE] e mostrar[GET]).<br>
+Foram reimplementadas as funções do CRUD (criar [POST], editar [EDIT], deletar [DELETE] e mostrar [GET]).<br>
 Foi utilizado o PostgreSQL (em um container Docker) ao invés do SQLite. <br>
-O sistema de Tags para anotações com a relação de um para muitos também foi implementada (como pode ser visto no gif abaixo, é possível acessar essa funcionalidade clicando no menu à esquerda do site). <br>
+O sistema de Tags para anotações com a relação de um para muitos também foi implementada (como pode ser visto no vídeo abaixo, é possível acessar essa funcionalidade clicando no menu à esquerda do site). <br>
 E a página foi publicada no Heroku e pode ser acessada por meio do seguinte site: https://peaceful-springs-80595.herokuapp.com/ . <br>
 
 
